@@ -198,7 +198,6 @@ export default function Login({ onLogin }: { onLogin: (user: { email: string; na
             >
               {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (
                 <>
-                  <Sparkles className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span>Enter as Guest</span>
                 </>
               )}
