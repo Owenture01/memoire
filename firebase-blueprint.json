@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "name": { "type": "string", "description": "Display name" },
+        "email": { "type": "string", "format": "email", "description": "User email" },
+        "isGuest": { "type": "boolean", "description": "Whether the user is a guest" },
+        "diagnosticProgress": { 
+          "type": "object", 
+          "description": "Saved diagnostic session state",
+          "properties": {
+            "currentStep": { "type": "integer" },
+            "selections": { "type": "object" }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Account creation timestamp" }
+      },
+      "required": ["uid", "name", "email"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Fragrance atelier reservation",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Owner UID" },
+        "outlet": { "type": "string", "description": "Selected boutique" },
+        "date": { "type": "string", "description": "Selected date" },
+        "time": { "type": "string", "description": "Selected time" },
+        "diagnosticData": { "type": "object", "description": "Olfactive diagnostic results" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Booking timestamp" }
+      },
+      "required": ["uid", "outlet", "date", "time"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": "Appointment",
+      "description": "User appointments"
+    }
+  }
+}
